@@ -1,0 +1,27 @@
+---
+import { button } from '~/styles.ts';
+import Card from '~/components/ui/Card.tsx';
+
+export interface Props {
+	name: string;
+	slug: string;
+	imageUrl?: string;
+	cta?: string;
+}
+---
+
+<Card>
+	<a href={`/collections/${Astro.props.slug}`} class="w-full ">
+		<article class="flex flex-col items-start gap-3 p-6 text-theme-base-200 bg-theme-base-600 ">
+			{
+
+			}
+			<p class="text-pretty text-3xl font-semibold">
+				{Astro.props.name}
+			</p>
+			<p class={button()}>
+				{Astro.props.cta ?? 'Shop now'}
+			</p>
+		</article>
+	</a>
+</Card>

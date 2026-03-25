@@ -1,0 +1,70 @@
+---
+import ExternalLink from '~/components/ui/ExternalLink.astro';
+import SocialIconLink from './SocialIconLink.astro';
+import twoXl from '~/assets/footerlogo.png';
+import twol from '~/assets/footerdog.png';
+
+
+
+export interface Props {
+	class?: string;
+}
+---
+
+<footer class={`breakout ${Astro.props.class}`}>
+		<section class=" flex flex-wrap items-center justify-between gap-y-2 py-4 bg-theme-base-50 px-4 md:px-32">
+		<ul class=" flex flex-wrap gap-2" aria-label="Supported payment methods">
+<img src={twoXl.src} class="h-[420px]">
+
+		</ul>
+					<img src={twol.src} class="w-[646px] mt-40">
+
+		<ul class="flex flex-wrap gap-2" aria-label="Social links">
+
+			<li>
+				<SocialIconLink name="Discord" icon="discord" href="https://astro.build/chat" />
+			</li>
+			<li>
+				<SocialIconLink
+					name="YouTube"
+					icon="youtube"
+					href="https://www.youtube.com/@astrodotbuild"
+				/>
+			</li>
+			<li>
+				<SocialIconLink
+					name="X / Twitter"
+					icon="twitter"
+					href="https://twitter.com/astrodotbuild"
+				/>
+			</li>
+			<li>
+				<SocialIconLink name="GitHub" icon="github" href="https://github.com/withastro/astro" />
+			</li>
+			<li>
+				<SocialIconLink name="Reddit" icon="reddit" href="https://www.reddit.com/r/withastro/" />
+			</li>
+			<li>
+				<SocialIconLink name="Mastodon" icon="mastodon" href="https://m.webtoo.ls/@astro" />
+			</li>
+		</ul>
+	</section>
+
+
+	<section class=" flex flex-wrap justify-between gap-y-2 py-6 text-sm text-theme-base-600 bg-theme-base-50 px-4 md:px-32">
+		<p>
+			{'© 2024 | '}
+			<ExternalLink href="https://astro.build/" target="_blank" rel="noopener noreferrer">
+				{'Astro'}
+			</ExternalLink><span>{' | All Rights Reserved.'}</span>
+			<p class="flex flex-wrap gap-x-4">
+				<ExternalLink href="https://astro.build/privacy/" target="_blank" rel="noopener noreferrer">
+					Privacy Policy
+				</ExternalLink>
+				<ExternalLink href="https://astro.build/terms/" target="_blank" rel="noopener noreferrer">
+					Terms of Service
+				</ExternalLink>
+			</p>
+		</p>
+	</section>
+</footer>
