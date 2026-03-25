@@ -30,7 +30,12 @@ export default defineConfig({
 	experimental: {
 		env: {
 			schema: {
-
+				STRIPE_SECRET_KEY: envField.string({
+					context: 'server',
+					access: 'secret',
+					// This is a random test key
+					default: 'sk_test_4eC39HqLyjWDarjtT1zdp7dc',
+				}),
 				FATHOM_SITE_ID: envField.string({
 					context: 'client',
 					access: 'public',
