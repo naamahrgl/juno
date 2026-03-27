@@ -1,0 +1,93 @@
+---
+import { button } from '~/styles.ts';
+
+export interface featuredItem {
+  uppertitle: string;
+  title: string;
+  subtitle: string;
+  buttontext: string[];
+  buttontypes: string[];
+  imageUrl: string;
+  slug: string;
+}
+
+export interface Props {
+  item: featuredItem;
+  area: "a" | "b" | "c" | "d";
+}
+
+const { item, area } = Astro.props;
+
+
+const layout = {
+
+  a: `
+  md:col-span-2
+  md:row-start-1
+    justify-end
+  `,
+
+  b: `
+  md:col-span-1
+  md:row-start-1
+  `,
+
+  c: `
+  md:col-span-1
+  md:row-start-1
+  `,
+
+  d: `
+  md:col-span-4
+  md:row-start-2
+  justify-center
+  bg-theme-base-600
+
+  `,
+
+};
+
+const rounding = {
+
+  a: "md:rounded-tr-2xl",
+
+  b: "",
+
+  c: "md:rounded-tl-2xl",
+
+  d: "md:rounded-b-2xl",
+
+};
+---
+
+
+
+
+
+<article
+class={`
+flex flex-col 
+items-start
+p-12
+
+bg-theme-base-50
+text-theme-base-200
+
+${layout[area]}
+${rounding[area]}
+`}
+>
+
+
+
+<h3 class="text-3xl font-semibold  mb-3">
+{item.title}
+</h3>
+
+          <button class={` h-24  mb-6 text-xl py-6 px-12 w-64 ${button({ theme:'light' })}`} >
+{item.buttontext}
+          </button>
+
+</article>
+
+

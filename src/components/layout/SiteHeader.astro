@@ -11,17 +11,18 @@ const { class: className, ...props } = Astro.props;
 
 <nav
 	aria-label="Site navigation"
-	class:list={["breakout min-h-20 !flex items-center flex-row md:justify-between py-2 bg-[#083da1] px-4 md:px-32 ", className]}
+	class:list={["breakout min-h-20 !flex items-center flex-row-reverse md:justify-between py-2 bg-[#083da1] px-4 md:px-32 ", className]}
 	{...props}
 >
-	<div class="flex-1">
-		<a class="-m-2 block w-fit p-2 transition hover:text-theme-base-600" href="/">
+
+	<div class="flex ">
+		<a class="-m-2 block w-fit p-2 transition hover:cursor-pointer" href="/">
 						<img src={twoXl.src} class="h-16">
 
 			<span class="sr-only">Home</span>
 		</a>
 	</div>
-	<div class="flex flex-1 justify-end gap-2">
+	<div class=" flex justify-end gap-2">
 		<CartDrawer client:idle />
 	</div>
 </nav>

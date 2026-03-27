@@ -14,26 +14,29 @@ interface FeatureCardData {
 
 // NOTE: You still need to manually update the heading that come before the cards
 const featureData: FeatureCardData[] = [
-	{
-		largeText: "★4.9",
-		description: "דירוג לקוחות",
-		subtitle: "מעל 12,000 ביקורות מלקוחות מרוצים"
+		{
+		largeText: "2,400",
+		description: `מוצרים במלאי`,
+		subtitle: "מזון, אביזרים, טיפוח וצעצועים — הכל מוכן לשליחה"
 	},
-	{
+		{
+		largeText: "40+",
+		description: `מותגים מובילים`,
+		subtitle: "Royal Canin, Hill's, Orijen ועוד מהמובילים בעולם"
+	},
+		{
 		largeText: "48h",
 		description: "משלוח מהיר",
 		subtitle: "הזמינו היום ותקבלו עד הבית עד מחרתיים"
 	},
 	{
-		largeText: "40+",
-		description: `מותגים מובילים`,
-		subtitle: "Royal Canin, Hill's, Orijen ועוד מהמובילים בעולם"
+		largeText: "★4.9",
+		description: "דירוג לקוחות",
+		subtitle: "מעל 12,000 ביקורות מלקוחות מרוצים"
 	},
-	{
-		largeText: "2,400",
-		description: `מוצרים במלאי`,
-		subtitle: "מזון, אביזרים, טיפוח וצעצועים — הכל מוכן לשליחה"
-	},
+
+
+
 ];
 ---
 
@@ -48,7 +51,7 @@ const featureData: FeatureCardData[] = [
 		>
 		
 			{
-				featureData.map((feature, idx) => (
+				featureData.map((feature) => (
 					<FeatureCardNumbers largeText={feature.largeText} description={feature.description} subtitle={feature.subtitle}/>
 				))
 			}

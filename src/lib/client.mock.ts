@@ -37,6 +37,7 @@ export const getProducts = <ThrowOnError extends boolean = false>(
 	let items = Object.values(products);
 	if (options?.query?.collectionId) {
 		const collectionId = options.query.collectionId;
+
 		items = items.filter((product) => product.collectionIds?.includes(collectionId));
 	}
 	if (options?.query?.ids) {
@@ -208,6 +209,8 @@ const products: Record<string, Product> = {
 		price: 4500,
 		imageUrl: '/assets/astro-zip-up-hoodie.png',
 		collectionIds: ['apparel', 'bestSellers'],
+				tags: ['heavy weight', 'היפואלרגני'],
+
 		variants: apparelVariants,
 	},
 	'astro-logo-curve-bill-snapback-cap': {
@@ -219,6 +222,8 @@ const products: Record<string, Product> = {
 		price: 2500,
 		imageUrl: '/assets/astro-cap.png',
 		collectionIds: ['apparel'],
+						tags: ['heavy weight', 'משחות שיניים'],
+
 	},
 	'astro-sticker-sheet': {
 		...productDefaults,
@@ -229,6 +234,8 @@ const products: Record<string, Product> = {
 		price: 1000,
 		imageUrl: '/assets/astro-universe-stickers.png',
 		collectionIds: ['stickers'],
+						tags: ['heavy weight', 'משחות שיניים'],
+
 	},
 	'sticker-pack': {
 		...productDefaults,
@@ -239,6 +246,8 @@ const products: Record<string, Product> = {
 		price: 500,
 		imageUrl: '/assets/astro-sticker-pack.png',
 		collectionIds: ['stickers', 'bestSellers'],
+						tags: ['heavy weight'],
+
 	},
 	'astro-icon-unisex-shirt': {
 		...productDefaults,
@@ -249,6 +258,8 @@ const products: Record<string, Product> = {
 		price: 1775,
 		imageUrl: '/assets/astro-unisex-tshirt.png',
 		collectionIds: ['apparel'],
+						tags: ['heavy weight', 'משחות שיניים'],
+
 		variants: apparelVariants,
 	},
 	'astro-icon-gradient-sticker': {
@@ -260,6 +271,8 @@ const products: Record<string, Product> = {
 		price: 200,
 		imageUrl: '/assets/astro-icon-sticker.png',
 		collectionIds: ['stickers', 'bestSellers'],
+						tags: ['heavy weight'],
+
 	},
 	'astro-logo-beanie': {
 		...productDefaults,
@@ -270,6 +283,8 @@ const products: Record<string, Product> = {
 		price: 1800,
 		imageUrl: '/assets/astro-beanie.png',
 		collectionIds: ['apparel', 'bestSellers'],
+						tags: ['heavy weight'],
+
 	},
 	'lighthouse-100-sticker': {
 		...productDefaults,
@@ -280,6 +295,8 @@ const products: Record<string, Product> = {
 		price: 500,
 		imageUrl: '/assets/astro-lighthouse-sticker.png',
 		collectionIds: ['stickers'],
+						tags: ['heavy weight'],
+
 	},
 	'houston-sticker': {
 		...productDefaults,
@@ -291,6 +308,8 @@ const products: Record<string, Product> = {
 		discount: 100,
 		imageUrl: '/assets/astro-houston-sticker.png',
 		collectionIds: ['stickers', 'bestSellers'],
+						tags: ['heavy weight'],
+
 	},
 };
 

@@ -22,6 +22,8 @@ export type Product = {
 	updatedAt: string;
 	deletedAt: string | null;
 	collectionIds?: Array<string>;
+		tags?: Array<string>;
+
 	variants: Array<{
 		id: string;
 		name: string;

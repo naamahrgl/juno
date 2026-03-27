@@ -1,0 +1,81 @@
+---
+import FeaturedCollectionCard from './FeaturedCollectionCard.astro';
+import type { featuredItem } from './FeaturedCollectionCard.astro';
+import { PageHeading, PageSection, PageSubHeading } from '~/components/ui/PageSection.tsx';
+
+
+const featuredData: featuredItem[] = [
+  {
+    title: "FeaturedContent1",
+    uppertitle: "Alpha",
+    subtitle: "Alpha",
+    slug: "#",
+    buttontext: ["hi"],
+    buttontypes: ["light"],
+    imageUrl: '../../assets/hero-banner-2xl.webp',
+  },
+  {
+    title: "FeaturedContent2",
+    uppertitle: "Alpha",
+    subtitle: "Alpha",
+    slug: "#",
+    buttontext: ["hi"],
+    buttontypes: ["dark"],
+    imageUrl: "../../../assets/hero-banner-sm.webp",
+  },
+  {
+    title: "FeaturedContent3",
+    uppertitle: "Alpha",
+    subtitle: "Alpha",
+    slug: "#",
+    buttontext: ["hi"],
+    buttontypes: ["ghost"],
+    imageUrl: "../../assets/hero-banner-sm.webp",
+  },
+  {
+    title: "FeaturedContent4",
+    uppertitle: "Alpha",
+    subtitle: "Alpha",
+    slug: "#",
+    buttontext: ["hi"],
+    buttontypes: ["ghost"],
+    imageUrl: "/assets/hero-banner-sm.webp",
+  },
+];
+
+const HEADING_ID = 'collection-section-heading';
+const { heading1= '  הכלב שלך', heading2= 'מחכה.', subheading = 'קטגוריות לכלבים' } = Astro.props;
+---
+
+<PageSection >
+    		<div class='flex flex-row justify-start'>
+		<PageSubHeading id={HEADING_ID} class='text-theme-base-600 ' >{subheading}</PageSubHeading>
+		</div>
+	<div class='flex flex-row gap-3  justify-start'>
+        	<PageHeading id={HEADING_ID} class='text-theme-base-600' >{heading1}</PageHeading>
+
+	<PageHeading id={HEADING_ID} class='text-theme-base-50 '>{heading2}</PageHeading>
+</div>
+
+<div
+class="
+grid
+gap-px
+grid-cols-1
+
+
+
+md:grid-cols-4
+md:grid-rows-[0.6fr_0.4fr]
+md:h-[1180px]
+
+">
+
+<FeaturedCollectionCard item={featuredData[0]!} area="a" />
+<FeaturedCollectionCard item={featuredData[1]!} area="b" />
+<FeaturedCollectionCard item={featuredData[2]!} area="c" />
+<FeaturedCollectionCard item={featuredData[3]!} area="d" />
+
+</div>
+
+</PageSection>

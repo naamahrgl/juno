@@ -2,7 +2,6 @@
 import ExternalLink from '~/components/ui/ExternalLink.astro';
 import SocialIconLink from './SocialIconLink.astro';
 import twoXl from '~/assets/footerlogo.png';
-import twol from '~/assets/footerdog.png';
 
 
 
@@ -11,13 +10,12 @@ export interface Props {
 }
 ---
 
-<footer class={`breakout ${Astro.props.class}`}>
-		<section class=" flex flex-wrap items-center justify-between gap-y-2 py-4 bg-theme-base-50 px-4 md:px-32">
+<footer class={`breakout ${Astro.props.class}`} dir="ltr">
+		<section class=" flex flex-wrap items-center justify-between gap-y-2 py-4 bg-theme-base-600 px-4 md:px-32">
 		<ul class=" flex flex-wrap gap-2" aria-label="Supported payment methods">
 <img src={twoXl.src} class="h-[420px]">
 
 		</ul>
-					<img src={twol.src} class="w-[646px] mt-40">
 
 		<ul class="flex flex-wrap gap-2" aria-label="Social links">
 
@@ -51,7 +49,7 @@ export interface Props {
 	</section>
 
 
-	<section class=" flex flex-wrap justify-between gap-y-2 py-6 text-sm text-theme-base-600 bg-theme-base-50 px-4 md:px-32">
+	<section class=" flex flex-wrap justify-between gap-y-2 py-6 text-sm text-theme-base-200 bg-theme-base-600 px-4 md:px-32">
 		<p>
 			{'© 2024 | '}
 			<ExternalLink href="https://astro.build/" target="_blank" rel="noopener noreferrer">
