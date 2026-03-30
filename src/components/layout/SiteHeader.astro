@@ -2,31 +2,36 @@
 import { CartDrawer } from '~/features/cart/CartDrawer.tsx';
 import type { HTMLAttributes } from 'astro/types';
 import twoXl from '~/assets/logo.png';
+import Nav from './Nav.astro';
+import Hamburger from './Hamburger.astro';
 
 
 export interface Props extends HTMLAttributes<'nav'> {}
 
 const { class: className, ...props } = Astro.props;
 ---
-
-<nav
+<header class="breakout relative    bg-[var(--accent)] flex flex-row  items-center justify-between  ">
+<div
 	aria-label="Site navigation"
-	class:list={["breakout min-h-20 !flex items-center flex-row-reverse md:justify-between py-2 bg-[#083da1] px-4 md:px-32 ", className]}
+	class:list={["breakout px-4 flex items-center  justify-between flex-row-reverse bg-theme-base-600 ", className]}
 	{...props}
 >
 
-	<div class="flex ">
-		<a class="-m-2 block w-fit p-2 transition hover:cursor-pointer" href="/">
+	<div class="flex items-center  gap-2">
+		<a  href="/">
 						<img src={twoXl.src} class="h-16">
 
-			<span class="sr-only">Home</span>
 		</a>
 	</div>
-	<div class=" flex justify-end gap-2">
-		<CartDrawer client:idle />
-	</div>
-</nav>
+	<Nav />
+		<div class="flex items-center  ">
 
+    <Hamburger />
+
+		<CartDrawer client:idle />
+		</div>
+</div>
+</header>
 <script>
 	function focusSearch() {
 		const searchInput = document.getElementById('global-search');
