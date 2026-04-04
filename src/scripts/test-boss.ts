@@ -12,7 +12,7 @@ async function testBoss() {
 
   console.log(
     "response preview:",
-    JSON.stringify(data, null, 2).slice(0, 500)
+    JSON.stringify(data, null, 2).slice(0, 2000)
   )
 
 }

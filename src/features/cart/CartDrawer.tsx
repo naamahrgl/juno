@@ -24,7 +24,7 @@ export function CartDrawer() {
 			<div class="flex h-full flex-col py-4">
 				<CartSummary />
 				<Show when={query.data.items.length > 0}>
-					<form method="post" action="/api/checkout" class="contents" data-astro-reload>
+					<form method="post" action="/checkout" class="contents" data-astro-reload>
 						<Button type="submit">Checkout</Button>
 					</form>
 				</Show>

@@ -24,7 +24,10 @@
 		"format:biome": "biome check . --apply",
 		"format:prettier": "prettier . --cache --write --list-different",
 		"test-db": "tsx src/scripts/test-db.ts",
-		"test-boss": "tsx src/scripts/test-boss.ts"
+		"test-boss": "tsx src/scripts/test-boss.ts",
+				"test-stock": "tsx src/scripts/test-stock.ts",
+								"sync-boss": "tsx src/scripts/sync-boss.ts"
+
 	},
 	"devDependencies": {
 		"@astrojs/check": "0.7.0",
