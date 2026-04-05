@@ -1,0 +1,156 @@
+---
+import PrimaryLayout
+  from "~/layouts/PrimaryLayout.astro"
+
+import {getCollections} from "~/lib/client.mock.ts"
+
+const { data } =
+  await getCollections()
+
+const collections =
+  data?.items ?? []
+---
+
+<PrimaryLayout
+  title="קטגוריות"
+>
+
+<section
+  class="
+    site-container
+    py-12
+    space-y-16
+  "
+>
+
+<h1
+  class="
+    h2
+    text-center
+    mb-6
+  "
+>
+
+הקטגוריות שלנו
+
+</h1>
+
+
+
+{collections.map(
+
+(collection, i) => (
+
+<a
+  href={`
+    /categories/
+    ${collection.slug}
+  `}
+>
+
+<div
+  class={`
+    grid
+    md:grid-cols-3
+    gap-8
+    items-center
+
+    ${i % 2 === 1
+      ? "md:[&>div:first-child]:order-2"
+      : ""
+    }
+  `}
+>
+
+<!-- image -->
+
+<div
+  class="
+    w-16
+    aspect-[4/3]
+    overflow-hidden
+    rounded-2xl
+    border
+    border-base-300
+  "
+>
+
+<img
+  src={collection.imageUrl}
+  alt={collection.name}
+
+  class="
+    w-full
+    h-full
+    object-cover
+    transition
+    duration-300
+    hover:scale-105
+  "
+/>
+
+</div>
+
+
+
+<!-- text -->
+
+<div
+  class="
+    md:col-span-2
+    space-y-4
+  "
+>
+
+<h2
+  class="
+    h3
+    text-primary-500
+  "
+>
+
+{collection.name}
+
+</h2>
+
+
+<p
+  class="
+    opacity-70
+    max-w-xl
+  "
+>
+
+{collection.description}
+
+</p>
+
+
+<span
+  class="
+    inline-flex
+    items-center
+    gap-2
+    text-sm
+    font-medium
+    text-primary-500
+  "
+>
+
+לצפייה במוצרים →
+
+</span>
+
+</div>
+
+</div>
+
+</a>
+
+))
+
+}
+
+</section>
+
+</PrimaryLayout>

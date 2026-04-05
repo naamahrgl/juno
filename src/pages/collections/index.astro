@@ -1,0 +1,356 @@
+---
+import PrimaryLayout from "~/layouts/PrimaryLayout.astro"
+import { getCollections, getProducts } from "~/lib/client.mock.ts"
+import CategoryBig from "~/components/ui/CategoryBig.astro"
+import CategorySmall from "~/components/ui/CategorySmall.astro"
+import type { Collection } from "~/lib/client.types.ts"
+
+
+const searchParams = Astro.url.searchParams
+
+const selectedTags =
+  searchParams.getAll("tags")
+
+const page =
+  Number(searchParams.get("page") ?? 1)
+
+const perPage = 24
+
+const { data: collectionsData } =
+  await getCollections()
+
+const { data: productsData } =
+  await getProducts()
+
+const products =
+  productsData?.items ?? []
+
+let collections =
+  collectionsData?.items ?? []
+
+
+/* ------------------ */
+/* filter collections */
+/* ------------------ */
+
+if (selectedTags.length > 0) {
+
+  const allowedCollectionIds =
+    new Set(
+
+      products
+
+        .filter(product =>
+
+          selectedTags.some(tag =>
+            product.tags?.includes(tag)
+          )
+
+        )
+
+        .flatMap(product =>
+          product.collectionIds ?? []
+        )
+
+    )
+
+  collections =
+    collections.filter(collection =>
+      allowedCollectionIds.has(collection.id)
+    )
+
+}
+
+
+/* ------------------ */
+/* pagination */
+/* ------------------ */
+
+const totalPages =
+  Math.ceil(
+    collections.length / perPage
+  )
+
+collections =
+  collections.slice(
+
+    (page - 1) * perPage,
+
+    page * perPage
+
+  )
+
+
+/* ------------------ */
+/* helpers */
+/* ------------------ */
+
+const allTags =
+  Array.from(
+
+    new Set(
+
+      products.flatMap(p =>
+        p.tags ?? []
+      )
+
+    )
+
+  ).sort()
+
+function pairCollections(
+  arr: Collection[]
+): (Collection | undefined)[][] {
+
+  const pairs:
+    (Collection | undefined)[][] = []
+
+  for (let i = 0; i < arr.length; i += 2) {
+
+    pairs.push([
+      arr[i],
+      arr[i + 1]
+    ])
+
+  }
+
+  return pairs
+
+}
+
+const rows =
+  pairCollections(collections)
+
+
+function buildTagUrl(
+  tag: string
+): string {
+
+  const params =
+    new URLSearchParams(searchParams)
+
+  const isActive =
+    selectedTags.includes(tag)
+
+  if (isActive) {
+
+    params.delete("tags", tag)
+
+  } else {
+
+    params.append("tags", tag)
+
+  }
+
+  return `?${params.toString()}`
+
+}
+---
+
+<PrimaryLayout title="קטגוריות">
+
+<section class="site-container py-12 space-y-10">
+
+
+<h1 class="h2 text-center">
+
+הקטגוריות שלנו
+
+</h1>
+
+
+
+<!-- filters -->
+
+<div class="flex flex-wrap gap-2 justify-center">
+
+{
+allTags.map(tag => (
+
+<a href={buildTagUrl(tag)}>
+
+<button
+
+class={`
+px-3
+py-1
+border
+border-theme-base-50
+rounded
+
+${selectedTags.includes(tag)
+? "bg-theme-base-100 text-theme-base-50"
+: ""
+}
+
+`}
+
+>
+
+{tag}
+
+</button>
+
+</a>
+
+))
+}
+
+</div>
+
+
+
+<!-- grid -->
+
+<div class="space-y-6">
+
+
+{
+rows.map((pair, rowIndex) => {
+
+const bigLeft =
+  rowIndex % 2 === 0
+
+const big =
+  pair[0]
+
+const small =
+  pair[1]
+
+return (
+
+<div
+
+class="
+grid
+md:grid-cols-3
+gap-6
+
+"
+
+>
+
+{
+
+bigLeft
+? (
+<>
+
+<CategoryBig collection={big} />
+
+{small && (
+<CategorySmall collection={small} />
+)}
+
+</>
+
+)
+
+: (
+
+<>
+
+{small && (
+<CategorySmall collection={small} />
+)}
+
+<CategoryBig collection={big} />
+
+</>
+
+)
+
+}
+
+</div>
+
+)
+
+})
+}
+
+
+</div>
+
+
+
+<!-- pagination -->
+
+<div class="flex justify-center gap-2 pt-8">
+
+{
+
+Array.from({
+
+length: totalPages
+
+}).map((_,i)=>{
+
+const params =
+  new URLSearchParams(searchParams)
+
+params.set(
+"page",
+String(i+1)
+)
+
+return (
+
+<a
+
+href={`?${params.toString()}`}
+
+class={`
+px-3
+py-1
+border
+rounded
+
+${page === i+1
+? "bg-primary-500 text-white"
+: ""
+}
+
+`}
+
+>
+
+{i+1}
+
+</a>
+
+)
+
+})
+
+}
+
+</div>
+
+
+</section>
+
+</PrimaryLayout>
+
+
+
+
+<!-- components inline -->
+
+<style>
+
+</style>
+
+
+
+<!-- big card -->
+
+<Fragment
+
+set:html={`
+${""}
+`}
+
+/>
+
+

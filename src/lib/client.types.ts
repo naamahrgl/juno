@@ -22,6 +22,7 @@ export type Product = {
 	updatedAt: string;
 	deletedAt: string | null;
 	collectionIds?: Array<string>;
+	categoryIds?: Array<string>;
 		tags?: Array<string>;
 
 	variants: Array<{
@@ -119,6 +120,8 @@ export type GetProductsData = {
 		active?: boolean;
 		/** Only return products belonging to a given collection id */
 		collectionId?: string;
+				categoryIds?: string;
+
 		/** Only return products with the given ids */
 		ids?: Array<string> | string;
 		limit?: number;

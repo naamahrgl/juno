@@ -40,6 +40,7 @@ export const getProducts = <ThrowOnError extends boolean = false>(
 
 		items = items.filter((product) => product.collectionIds?.includes(collectionId));
 	}
+
 	if (options?.query?.ids) {
 		const ids = Array.isArray(options.query.ids) ? options.query.ids : [options.query.ids];
 		items = items.filter((product) => ids.includes(product.id));
@@ -87,6 +88,24 @@ export const getCollectionById = <ThrowOnError extends boolean = false>(
 		return error as RequestResult<GetCollectionByIdResponse, GetCollectionByIdError, ThrowOnError>;
 	}
 	return asResult({ ...collection, products: [] });
+};
+
+export const getCategories = <ThrowOnError extends boolean = false>(
+	_options?: Options<GetCollectionsData, ThrowOnError>,
+): RequestResult<GetCollectionsResponse, GetCollectionsError, ThrowOnError> => {
+	return asResult({ items: Object.values(categories), next: null });
+};
+
+export const getCategoryById = <ThrowOnError extends boolean = false>(
+	options: Options<GetCollectionByIdData, ThrowOnError>,
+): RequestResult<GetCollectionByIdResponse, GetCollectionByIdError, ThrowOnError> => {
+	const category = categories[options.path.id];
+	if (!category) {
+		const error = asError<GetCollectionByIdError>({ error: 'not-found' });
+		if (options.throwOnError) throw error;
+		return error as RequestResult<GetCollectionByIdResponse, GetCollectionByIdError, ThrowOnError>;
+	}
+	return asResult({ ...category, products: [] });
 };
 
 export const createCustomer = <ThrowOnError extends boolean = false>(
@@ -145,7 +164,116 @@ const collectionDefaults = {
 	deletedAt: null,
 };
 
+
+const categories: Record<string, Collection> = {
+		dryfood: {
+		id: 'dryfood',
+		name: 'מזון יבש',
+		description: 'Wear your love for Astro on your sleeve.',
+		slug: 'dryfood',
+		imageUrl: '/assets/shirts.png',
+		...collectionDefaults,
+	},
+			vet: {
+		id: 'vet',
+		name: 'מזון רפואי',
+		description: 'Wear your love for Astro on your sleeve.',
+		slug: 'vet',
+		imageUrl: '/assets/shirts.png',
+		...collectionDefaults,
+	},
+			pestcontrol: {
+		id: 'pestcontrol',
+		name: 'הדברה',
+		description: 'Wear your love for Astro on your sleeve.',
+		slug: 'pestcontrol',
+		imageUrl: '/assets/shirts.png',
+		...collectionDefaults,
+	},
+			toys: {
+		id: 'toys',
+		name: 'משחקים',
+		description: 'Wear your love for Astro on your sleeve.',
+		slug: 'vet',
+		imageUrl: '/assets/shirts.png',
+		...collectionDefaults,
+	},
+			cans: {
+		id: 'cans',
+		name: 'שימורים ומעדנים',
+		description: 'Wear your love for Astro on your sleeve.',
+		slug: 'cans',
+		imageUrl: '/assets/shirts.png',
+		...collectionDefaults,
+	},
+			teeth: {
+		id: 'teeth',
+		name: 'שיניים',
+		description: 'Wear your love for Astro on your sleeve.',
+		slug: 'vet',
+		imageUrl: '/assets/shirts.png',
+		...collectionDefaults,
+	},
+};
+
+
 const collections: Record<string, Collection> = {
+		dryfood: {
+		id: 'dryfood',
+		name: 'מזון יבש',
+		description: 'Wear your love for Astro on your sleeve.',
+		slug: 'dryfood',
+		imageUrl: '/assets/shirts.png',
+		...collectionDefaults,
+	},
+			vet: {
+		id: 'vet',
+		name: 'מזון רפואי',
+		description: 'Wear your love for Astro on your sleeve.',
+		slug: 'vet',
+		imageUrl: '/assets/shirts.png',
+		...collectionDefaults,
+	},
+			pestcontrol: {
+		id: 'pestcontrol',
+		name: 'הדברה',
+		description: 'Wear your love for Astro on your sleeve.',
+		slug: 'pestcontrol',
+		imageUrl: '/assets/shirts.png',
+		...collectionDefaults,
+	},
+			toys: {
+		id: 'toys',
+		name: 'משחקים',
+		description: 'Wear your love for Astro on your sleeve.',
+		slug: 'vet',
+		imageUrl: '/assets/shirts.png',
+		...collectionDefaults,
+	},
+			cans: {
+		id: 'cans',
+		name: 'שימורים ומעדנים',
+		description: 'Wear your love for Astro on your sleeve.',
+		slug: 'cans',
+		imageUrl: '/assets/shirts.png',
+		...collectionDefaults,
+	},
+			teeth: {
+		id: 'teeth',
+		name: 'שיניים',
+		description: 'Wear your love for Astro on your sleeve.',
+		slug: 'vet',
+		imageUrl: '/assets/shirts.png',
+		...collectionDefaults,
+	},
+				leash: {
+		id: 'leash',
+		name: 'רצועות',
+		description: 'Wear your love for Astro on your sleeve.',
+		slug: 'leash',
+		imageUrl: '/assets/shirts.png',
+		...collectionDefaults,
+	},
 	apparel: {
 		id: 'apparel',
 		name: 'Apparel',
@@ -188,6 +316,15 @@ const apparelVariants = ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL'].map((size, in
 	},
 }));
 
+const foodlVariants = ['6 ק״ג', '12 ק״ג',].map((size, index) => ({
+	id: size,
+	name: size,
+	stock: index * 10,
+	options: {
+		Size: size,
+	},
+}));
+
 const productDefaults = {
 	description: '',
 	images: [],
@@ -199,6 +336,36 @@ const productDefaults = {
 };
 
 const products: Record<string, Product> = {
+		'dogli': {
+		...productDefaults,
+		id: 'dogli',
+		name: 'dogli',
+		slug: 'dogli',
+		tagline:
+			'No need to compress this .zip. The Zip Up Hoodie is a comfortable fit and fabric for all sizes.',
+		price: 4500,
+		imageUrl: '/assets/astro-zip-up-hoodie.png',
+		collectionIds: [ 'dryfood', 'dogs'],
+				categoryIds: [ 'dryfood', 'dogs'],
+
+				tags: ['heavy weight', 'היפואלרגני'],
+
+		variants: foodlVariants,
+	},
+			'catli': {
+		...productDefaults,
+		id: 'catli',
+		name: 'catli',
+		slug: 'catli',
+		tagline:
+			'No need to compress this .zip. The Zip Up Hoodie is a comfortable fit and fabric for all sizes.',
+		price: 4500,
+		imageUrl: '/assets/astro-zip-up-hoodie.png',
+		collectionIds: [ 'dryfood', 'cats'],
+				tags: ['heavy weight', 'היפואלרגני'],
+
+		variants: foodlVariants,
+	},
 	'astro-icon-zip-up-hoodie': {
 		...productDefaults,
 		id: 'astro-icon-zip-up-hoodie',
