@@ -49,9 +49,10 @@ const products = productsResponse.data.items.filter((product) => {
 	return getProductStock(product) > 0;
 });
 const allTags = Array.from(
-  new Set(
-    products.flatMap((product) => product.tags ?? [])
-  )
+  new Set([
+    ...products.flatMap(p => p.tags ?? []),
+    ...selectedTags
+  ])
 ).sort();
 const filteredProducts =
   selectedTags.length === 0
@@ -131,14 +132,24 @@ return (
 
 <li>
 
-<a
-href={`?${params.toString()}`}
+<a href={`?${params.toString()}`}>
 
+<button
+class={`
+${button({ theme:'ghost' })}
+
+${isActive
+  ? "bg-theme-base-100 text-theme-base-50 border-theme-base-100"
+  : ""
+}
+`}
 >
-	          <button class={` ${button({ theme:'ghost' })}`}>
+
 {tag}
-          </button>
-	</a>
+
+</button>
+
+</a>
 
 </li>
 

@@ -223,7 +223,7 @@ const collections: Record<string, Collection> = {
 		name: 'מזון יבש',
 		description: 'Wear your love for Astro on your sleeve.',
 		slug: 'dryfood',
-		imageUrl: '/assets/shirts.png',
+		imageUrl: '🚀',
 		...collectionDefaults,
 	},
 			vet: {
@@ -231,7 +231,7 @@ const collections: Record<string, Collection> = {
 		name: 'מזון רפואי',
 		description: 'Wear your love for Astro on your sleeve.',
 		slug: 'vet',
-		imageUrl: '/assets/shirts.png',
+		imageUrl: '🚀',
 		...collectionDefaults,
 	},
 			pestcontrol: {
@@ -239,7 +239,7 @@ const collections: Record<string, Collection> = {
 		name: 'הדברה',
 		description: 'Wear your love for Astro on your sleeve.',
 		slug: 'pestcontrol',
-		imageUrl: '/assets/shirts.png',
+		imageUrl: '🚀',
 		...collectionDefaults,
 	},
 			toys: {
@@ -247,7 +247,7 @@ const collections: Record<string, Collection> = {
 		name: 'משחקים',
 		description: 'Wear your love for Astro on your sleeve.',
 		slug: 'vet',
-		imageUrl: '/assets/shirts.png',
+		imageUrl: '🚀',
 		...collectionDefaults,
 	},
 			cans: {
@@ -255,7 +255,7 @@ const collections: Record<string, Collection> = {
 		name: 'שימורים ומעדנים',
 		description: 'Wear your love for Astro on your sleeve.',
 		slug: 'cans',
-		imageUrl: '/assets/shirts.png',
+		imageUrl: '🚀',
 		...collectionDefaults,
 	},
 			teeth: {
@@ -263,7 +263,7 @@ const collections: Record<string, Collection> = {
 		name: 'שיניים',
 		description: 'Wear your love for Astro on your sleeve.',
 		slug: 'vet',
-		imageUrl: '/assets/shirts.png',
+		imageUrl: '🚀',
 		...collectionDefaults,
 	},
 				leash: {
@@ -271,7 +271,7 @@ const collections: Record<string, Collection> = {
 		name: 'רצועות',
 		description: 'Wear your love for Astro on your sleeve.',
 		slug: 'leash',
-		imageUrl: '/assets/shirts.png',
+		imageUrl: '🚀',
 		...collectionDefaults,
 	},
 	apparel: {
@@ -279,7 +279,7 @@ const collections: Record<string, Collection> = {
 		name: 'Apparel',
 		description: 'Wear your love for Astro on your sleeve.',
 		slug: 'apparel',
-		imageUrl: '/assets/shirts.png',
+		imageUrl: '🚀',
 		...collectionDefaults,
 	},
 	stickers: {
@@ -287,7 +287,7 @@ const collections: Record<string, Collection> = {
 		name: 'Stickers',
 		description: 'Load up those laptop lids with Astro pride.',
 		slug: 'stickers',
-		imageUrl: '/assets/astro-sticker-pack.png',
+		imageUrl: '🚀',
 		...collectionDefaults,
 	},
 	bestSellers: {
@@ -295,7 +295,7 @@ const collections: Record<string, Collection> = {
 		name: 'Best Sellers',
 		description: "You'll love these.",
 		slug: 'best-sellers',
-		imageUrl: '/assets/astro-houston-sticker.png',
+		imageUrl: '🚀',
 		...collectionDefaults,
 	},
 };
@@ -347,8 +347,8 @@ const products: Record<string, Product> = {
 		imageUrl: '/assets/astro-zip-up-hoodie.png',
 		collectionIds: [ 'dryfood', 'dogs'],
 				categoryIds: [ 'dryfood', 'dogs'],
-
-				tags: ['heavy weight', 'היפואלרגני'],
+cat_dog: ['dogs'],
+				tags: [ 'היפואלרגני'],
 
 		variants: foodlVariants,
 	},
@@ -363,6 +363,7 @@ const products: Record<string, Product> = {
 		imageUrl: '/assets/astro-zip-up-hoodie.png',
 		collectionIds: [ 'dryfood', 'cats'],
 				tags: ['heavy weight', 'היפואלרגני'],
+cat_dog: ['cats', 'dpgs'],
 
 		variants: foodlVariants,
 	},

@@ -24,7 +24,7 @@ export type Product = {
 	collectionIds?: Array<string>;
 	categoryIds?: Array<string>;
 		tags?: Array<string>;
-
+cat_dog?: Array<string>;
 	variants: Array<{
 		id: string;
 		name: string;

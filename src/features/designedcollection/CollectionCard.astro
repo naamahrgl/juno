@@ -1,10 +1,12 @@
 ---
 import Card from '~/components/ui/Card.tsx';
+import Emoji from 'astro-emoji'
+
 
 export interface Props {
 	name: string;
 	slug: string;
-	imageUrl?: string;
+	imageUrl: string;
 	cta?: string;
 	  isFirst?: boolean;
   isLast?: boolean;
@@ -21,20 +23,9 @@ const roundedClass = [
 	<a href={`/collections/${Astro.props.slug}`} class={`w-full gap-0 px-0 `} >
 
 		<article class={`flex flex-col  gap-3 p-6 text-theme-base-200 bg-theme-base-600 w-full items-start  ${roundedClass}`}>
-			{
-			Astro.props.imageUrl && (
-					// inferSize needs a full URL to work
-					<img
-						src={new URL(Astro.props.imageUrl, Astro.url.origin).href}
-						alt=""
-						class="aspect-square  w-16 h-16"
-						loading="lazy"
+			<Emoji symbol={Astro.props.imageUrl} style="font-size: 3rem;"  />.
 
-		
-					/>
-				)
-				
-			}
+
 			
 			<p class="text-pretty text-3xl font-semibold">
 				{Astro.props.name}

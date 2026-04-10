@@ -1,10 +1,12 @@
 ---
-const { collection } = Astro.props
+import Emoji from 'astro-emoji'
+
+const { collection, href } = Astro.props
 ---
 
 <a
 
-href={`/collections/${collection.slug}`}
+href={href ?? `/collections/${collection.slug}`}
 
 class="
 md:col-span-2
@@ -13,7 +15,7 @@ border-theme-base-600
 text-theme-base-600
 
 rounded-2xl
-p-6
+p-16
 flex
 items-center
 gap-6
@@ -22,17 +24,9 @@ transition
 "
 
 >
+			<Emoji symbol={collection.imageUrl} style="font-size: 6rem;" class="object-contain" />.
 
-<img
 
-src={collection.imageUrl}
-
-class="
-w-32
-object-contain
-"
-
-/>
 
 
 <div>

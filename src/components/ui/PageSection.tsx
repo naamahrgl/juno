@@ -9,7 +9,7 @@ export function PageSection(props: PageSectionProps) {
 	const [local, others] = splitProps(props, ['children', 'class']);
 
 	return (
-		<section class={`flex flex-col gap-4 ${local.class || ''}`} {...others}>
+		<section class={`flex flex-col gap-4  ${local.class || ''}`} {...others}>
 			{local.children}
 		</section>
 	);
@@ -28,6 +28,15 @@ export function PageSubHeading(props: ParentProps<JSX.HTMLAttributes<HTMLHeading
 	const [local, others] = splitProps(props, ['children', 'class']);
 	return (
 		<h2 {...others} class={twMerge('text-2xl  md:text-3xl', local.class)}>
+			{local.children}
+		</h2>
+	);
+}
+
+export function PageSubtitle(props: ParentProps<JSX.HTMLAttributes<HTMLHeadingElement>>) {
+	const [local, others] = splitProps(props, ['children', 'class']);
+	return (
+		<h2 {...others} class={twMerge('text-xs md:text-xl', local.class)}>
 			{local.children}
 		</h2>
 	);
